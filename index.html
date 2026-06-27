@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo & Maya: Comprehensive Guide - Interactive Script</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #667eea;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .audio-player-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .audio-label {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        audio {
+            width: 100%;
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        .scene-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 40px 0 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .timestamp {
+            color: #999;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .dialogue-block {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 5px solid #667eea;
+        }
+
+        .dialogue-block.leo {
+            border-left-color: #3b82f6;
+        }
+
+        .dialogue-block.maya {
+            border-left-color: #ec4899;
+        }
+
+        .character-section {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .avatar.leo {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .avatar.maya {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+        }
+
+        .dialogue-content {
+            flex: 1;
+        }
+
+        .character-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .character-name.leo {
+            color: #3b82f6;
+        }
+
+        .character-name.maya {
+            color: #ec4899;
+        }
+
+        .action {
+            font-style: italic;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 10px;
+            background: #fffacd;
+            padding: 5px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .dialogue-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .pronunciation {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            border-left: 3px solid #9999cc;
+            font-family: 'Courier New', monospace;
+        }
+
+        .pronunciation-label {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .translation {
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 0;
+            padding: 8px;
+            background: #fffacd;
+            border-radius: 4px;
+            border-left: 3px solid #ffd700;
+        }
+
+        .translation-label {
+            font-weight: bold;
+            color: #ff9800;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #ddd;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+            }
+
+            .dialogue-block {
+                padding: 15px;
+            }
+
+            .character-section {
+                gap: 10px;
+            }
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <h1 class="title">📚 Leo & Maya</h1>
+            <p class="subtitle">Comprehensive Conversation Guide</p>
+
+            <div class="audio-player-container">
+                <div class="audio-label">🎧 Listen & Read Along</div>
+                <audio controls>
+                    <source src="LEO_and_MAYA.m4a" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div id="dialogueContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const dialogueData = [
+            { timestamp: "0:00 - Start", scene: "Leo and Maya's Study Session" },
+            {
+                character: "Leo",
+                avatar: "L",
+                action: "staring blankly at his laptop screen",
+                dialogue: "Maya, I'm going to fail. I'm looking at these Calculus notes, and it might as well be written in ancient Sumerian. I am actually going to fail.",
+                pronunciation: "มาย่า, ไอม์ โกอิ้ง ทู เฟล. ไอม์ ลุคกิ้ง แอท ดีส แคลคูลัส โน้ตส์, แอนด์ อิท ไมท์ แอส เวล บี ริทเทน อิน เอนเชี่ยนท์ ซูเมเรียน. ไอ แอม แอคชวลลี่ โกอิ้ง ทู เฟล.",
+                translation: "มาย่า ฉันต้องตกแน่ๆ มองดูโน้ตแคลคูลัสพวกนี้แล้ว เหมือนเขียนด้วยภาษาซูเมเรียนโบราณเลย ฉันต้องตกจริงๆ แน่ๆ"
+            },
+            {
+                character: "Maya",
+                avatar: "M",
+                action: "sighs and rubs her temples",
+                dialogue: "You and me both. I've read this same chapter on integrals four times, and nothing is sticking. If Dr. Harrison puts that advanced theorem on the exam, I'm just handing in a blank paper.",
+                pronunciation: "ยู แอนด์ มี โบธ. ไอฝ์ รีด ดิส เซม แชปเตอร์ ออน อินทิกรัลส์ โฟร์ ไทม์ส, แอนด์ น็อตติง อีส สติคกิ้ง. อิฟ ด็อกเตอร์ แฮร์ริสัน พุทส์ แดท แอดวานซ์ ธีโอเรม ออน ดิ เอ็กแซม, ไอม์ จัสท์ แฮนดิ้ง อิน อะ แบลงค์ เปเปอร์.",
+                translation: "ฉันก็เหมือนกัน อ่านบทอินทิกรัลนี้มาสี่รอบแล้ว ไม่เข้าหัวเลย ถ้าดร.แฮร์ริสันออกทฤษฎีขั้นสูงนั่นในข้อสอบ ฉันคงส่งกระดาษเปล่าแน่ๆ"
+            },
+            {
+                character: "Leo",
+                avatar: "L",
+                dialogue: "It's just so much pressure. If I bomb this, it's going to tank my GPA. My parents are going to flip, and I might lose my scholarship. I can't stop thinking about the worst-case scenario. It makes it impossible to actually focus on studying.",
+                pronunciation: "อิทส์ จัสท์ โซ มัช เพรสเชอร์. อิฟ ไอ บอมบ์ ดิส, อิทส์ โกอิ้ง ทู แทงค์ มาย จีพีเอ. มาย พาเรนท์ส อาร์ โกอิ้ง ทู ฟลิป, แอนด์ ไอ ไมท์ ลูส มาย สกอลาร์ชิป. ไอ คานท์ สต็อป ทิงคิง อะเบาต์ เดอะ เวิสต์-เคส ซินาริโอ. อิท เมคส์ อิท อิมพอสซิเบิล ทู แอคชวลลี่ โฟกัส ออน สตั๊ดดีอิ้ง.",
+                translation: "มันกดดันมากเลย ถ้าทำพัง เกรดฉันต้องร่วงแน่ๆ พ่อแม่ต้องโกรธมาก และฉันอาจจะเสียทุนเรียนด้วย หยุดคิดถึงสถานการณ์ที่แย่ที่สุดไม่ได้เลย มันทำให้ไม่มีสมาธิอ่านหนังสือเลย"
+            },
+            {
+                character: "Maya",
+                avatar: "M",
+                dialogue: "I know. My stomach has been in knots since yesterday. It feels like this one test is going to decide the rest of our lives.",
+                pronunciation: "ไอ โนว์. มาย สตอมัค แฮส บีน อิน น็อตส์ ซินส์ เยสเทอร์เดย์. อิท ฟีลส์ ไลค์ ดิส วัน เทสต์ อีส โกอิ้ง ทู ดีไซด์ เดอะ เรสต์ ออฟ เอาเออร์ ไลฟ์ส.",
+                translation: "เข้าใจเลย ฉันปวดมวนท้องตั้งแต่เมื่อวานแล้ว รู้สึกเหมือนการสอบครั้งนี้จะตัดสินทั้งชีวิตของเราเลย"
+            },
+            {
+                character: "Leo",
+                avatar: "L",
+                dialogue: "Exactly! Why does it all come down to two hours on a Tuesday morning? If I fail, I don't even know how I'll show my face on campus.",
+                pronunciation: "เอ็กแซคลี่! วาย ดาส อิท ออล คัม ดาวน์ ทู ทู อาวเออร์ส ออน อะ ทิวส์เดย์ มอร์นิ่ง? อิฟ ไอ เฟล, ไอ โดนท์ อีเวน โนว์ ฮาว ไอลล์ โชว์ มาย เฟซ ออน แคมปัส.",
+                translation: "ใช่เลย! ทำไมทุกอย่างต้องมาขึ้นอยู่กับสองชั่วโมงในเช้าวันอังคารด้วย ถ้าตก ฉันไม่รู้จะเอาหน้าไปไว้ที่ไหนในมหาลัยเลย"
+            },
+            { timestamp: "2:15 - Turning Point", scene: "Maya's Question" },
+            {
+                character: "Maya",
+                avatar: "M",
+                dialogue: "Wait... take a deep breath. Let's think about this logically for a second. What actually happens if we do fail?",
+                pronunciation: "เวท... เทค อะ ดีพ เบรธ. เล็ตส์ ทิงค์ อะเบาต์ ดิส ลอจิคัลลี่ ฟอร์ อะ เซคกันด์. วอท แอคชวลลี่ แฮปเพนส์ อิฟ วี ดู เฟล?",
+                translation: "เดี๋ยวก่อน... หายใจลึกๆ ลองคิดแบบมีเหตุผลดูแป๊บนึง ถ้าเราตกจริงๆ จะเกิดอะไรขึ้น?"
+            },
+            {
+                character: "Leo",
+                avatar: "L",
+                dialogue: "I drop out and become a professional hermit?",
+                pronunciation: "ไอ ดรอป เอาต์ แอนด์ บีคัม อะ โปรเฟสชั่นแนล เฮอร์มิท?",
+                translation: "ฉันลาออกแล้วไปเป็นฤาษีมืออาชีพมั้ง?"
+            },
+            {
+                character: "Maya",
+                avatar: "M",
+                dialogue: "No, seriously. Doesn't the math department have that academic forgiveness policy? I remember reading in the syllabus that if you score below a C minus on the final, you can apply to take a resit exam in the summer.",
+                pronunciation: "โน, ซีเรียสลี่. ดาสซึ่นท์ เดอะ แมธ ดีพาร์ทเมนต์ แฮฟ แดท อะคาเดมิค ฟอร์กิฟเนส โพลิซี? ไอ รีเมมเบอร์ รีดดิ้ง อิน เดอะ ซิลลาบัส แดท อิฟ ยู สกอร์ บีโลว์ อะ ซี ไมนัส ออน เดอะ ไฟนอล, ยู แคน แอพพลาย ทู เทค อะ รีซิท เอ็กแซม อิน เดอะ ซัมเมอร์.",
+                translation: "ไม่สิ พูดจริงๆ ภาควิชาคณิตไม่มีนโยบายสอบแก้ตัวเหรอ? จำได้ว่าอ่านในประมวลรายวิชาว่า ถ้าสอบไฟนอลได้ต่ำกว่า C- เราสามารถขอสอบซ่อมตอนซัมเมอร์ได้นะ"
+            },
+            {
+                character: "Leo",
+                avatar: "L",
+                action: "pauses, sitting up a little straighter",
+                dialogue: "Wait, really? Are you sure?",
+                pronunciation: "เวท, เรียลลี่? อาร์ ยู ชัวร์?",
+                translation: "เดี๋ยวนะ จริงดิ? แน่ใจนะ?"
+            },
+            {
+                character: "Maya",
+                avatar: "M",
+                dialogue: "Pretty sure. My roommate had to do it for Physics last semester. They give you a different version of the test a month later. The highest grade you can get is a B, but it replaces the failing grade entirely.",
+                pronunciation: "พริตตี้ ชัวร์. มาย รูมเมท แฮด ทู ดู อิท ฟอร์ ฟิสิกส์ ลาสต์ ซีเมสเตอร์. เดย์ กิฟ ยู อะ ดิฟเฟอเรนท์ เวอร์ชั่น ออฟ เดอะ เทสต์ อะ มันธ์ เลเทอร์. เดอะ ไฮเอสต์ เกรด ยู แคน เก็ท อีส อะ บี, บัท อิท รีเพลสเซส เดอะ เฟลลิ่ง เกรด เอ็นไทร์ลี่.",
+                translation: "ค่อนข้างแน่ใจเลย รูมเมทฉันต้องทำแบบนี้กับวิชาฟิสิกส์เทอมที่แล้ว เขาจะให้ข้อสอบคนละชุดในอีกหนึ่งเดือนต่อมา เกรดสูงสุดที่ได้คือ B แต่มันจะไปแทนที่เกรด F ทั้งหมดเลย"
+            },
+            { timestamp: "4:30 - Relief", scene: "Finding the Safety Net" },
+            {
+                character: "Leo",
+                avatar: "L",
+                dialogue: "Oh man... you have no idea how much better that makes me feel. Just knowing there's a safety net.",
+                pronunciation: "โอ้ แมน... ยู แฮฟ โน ไอเดีย ฮาว มัช เบทเทอร์ แดท เมคส์ มี ฟีล. จัสท์ โนว์อิ้ง แดร์ส อะ เซฟตี้ เน็ต.",
+                translation: "โอ้โห... เธอไม่รู้หรอกว่ามันทำให้ฉันรู้สึกดีขึ้นแค่ไหน แค่รู้ว่ามีทางรอด"
+            },
+            {
+                character: "Maya",
+                avatar: "M",
+                dialogue: "Right? Like, obviously, I don't want to spend my summer vacation studying Calculus, but if the absolute worst happens, our lives aren't over. We just take the resit.",
+                pronunciation: "ไรท์? ไลค์, ออบเวียสลี่, ไอ โดนท์ วอนท์ ทู สเปนด์ มาย ซัมเมอร์ เวเคชั่น สตั๊ดดีอิ้ง แคลคูลัส, บัท อิฟ ดิ แอบโซลูท เวิสต์ แฮปเพนส์, เอาเออร์ ไลฟ์ส อาร์นท์ โอเวอร์. วี จัสท์ เทค เดอะ รีซิท.",
+                translation: "ใช่ไหมล่ะ? คือแน่นอนว่าฉันไม่อยากใช้เวลาปิดเทอมซัมเมอร์มานั่งเรียนแคลคูลัสหรอก แต่ถ้าสถานการณ์เลวร้ายที่สุดเกิดขึ้น ชีวิตเราก็ยังไม่จบนี่ เราก็แค่ไปสอบซ่อม"
+            },
+            {
+                character: "Leo",
+                avatar: "L",
+                dialogue: "And honestly, if I had an extra month to just focus on this one subject without balancing it with four other classes, I'd actually understand it. I wouldn't just pass; I'd probably do really well.",
+                pronunciation: "แอนด์ ออเนสต์ลี่, อิฟ ไอ แฮด แอน เอ็กซ์ตร้า มันธ์ ทู จัสท์ โฟกัส ออน ดิส วัน ซับเจคท์ วิทเอาต์ บาลานซ์ซิ่ง อิท วิท โฟร์ ออเทอร์ คลาสเซส, ไอด์ แอคชวลลี่ อันเดอร์สแตนด์ อิท. ไอ วู้ดดึ่นท์ จัสท์ พาส; ไอด์ พรอบอะบลี่ ดู เรียลลี่ เวล.",
+                translation: "และเอาจริงๆ นะ ถ้าฉันมีเวลาเพิ่มอีกเดือนเพื่อโฟกัสแค่วิชานี้วิชาเดียว โดยไม่ต้องแบ่งเวลาไปเรียนอีกสี่วิชา ฉันคงจะเข้าใจมันจริงๆ ฉันคงไม่แค่สอบผ่าน แต่อาจจะทำได้ดีมากๆ เลยด้วย"
+            },
+            {
+                character: "Maya",
+                avatar: "M",
+                dialogue: "Exactly. We'd know the format, we'd know exactly what our weak spots are, and we could just drill those concepts until they make sense. We would totally crush a makeup exam.",
+                pronunciation: "เอ็กแซคลี่. วีด โนว์ เดอะ ฟอร์แมต, วีด โนว์ เอ็กแซคลี่ วอท เอาเออร์ วีค สปอตส์ อาร์, แอนด์ วี คู้ด จัสท์ ดริล โดส คอนเซปต์ส อันทิล เดย์ เมค เซนส์. วี วู้ด โททัลลี่ ครัช อะ เมคอัพ เอ็กแซม.",
+                translation: "ถูกต้อง เราจะรู้แนวข้อสอบ รู้ว่าจุดอ่อนของเราคืออะไร และเราสามารถฝึกทำโจทย์จนกว่าจะเข้าใจได้ เราต้องทำข้อสอบซ่อมได้คะแนนพุ่งแน่ๆ"
+            },
+            { timestamp: "6:00 - Resolution", scene: "New Perspective" },
+            {
+                character: "Leo",
+                avatar: "L",
+                dialogue: "Okay. Okay, that takes a lot of the edge off. I'm still terrified for Tuesday, but at least it isn't a life-or-death situation anymore.",
+                pronunciation: "โอเค. โอเค, แดท เทคส์ อะ ลอท ออฟ ดิ เอดจ์ ออฟ. ไอม์ สติล เทอร์ริไฟด์ ฟอร์ ทิวส์เดย์, บัท แอท ลีสต์ อิท อีสซึ่นท์ อะ ไลฟ์-ออร์-เดธ ซิจูเอชั่น เอนี่มอร์.",
+                translation: "โอเค โอเค ความเครียดลดลงไปเยอะเลย ฉันยังกลัววันอังคารอยู่นะ แต่อย่างน้อยมันก็ไม่ใช่เรื่องคอขาดบาดตายอีกต่อไปแล้ว"
+            },
+            {
+                character: "Maya",
+                avatar: "M",
+                dialogue: "Exactly. It's just a test. Let's just do the best we can right now. And if we crash and burn... well, we'll see Dr. Harrison in July and show him what we've actually got.",
+                pronunciation: "เอ็กแซคลี่. อิทส์ จัสท์ อะ เทสต์. เล็ตส์ จัสท์ ดู เดอะ เบสต์ วี แคน ไรท์ นาว. แอนด์ อิฟ วี แครช แอนด์ เบิร์น... เวล, วีลล์ ซี ด็อกเตอร์ แฮร์ริสัน อิน จูลาย แอนด์ โชว์ ฮิม วอท วีฝ์ แอคชวลลี่ ก็อท.",
+                translation: "ใช่เลย มันก็แค่การสอบ เรามาทำให้ดีที่สุดในตอนนี้กันเถอะ และถ้าเราพังไม่เป็นท่า... เราค่อยไปเจอ ดร.แฮร์ริสัน เดือนกรกฎาคม แล้วทำให้เขาเห็นว่าของจริงมันเป็นยังไง"
+            },
+            {
+                character: "Leo",
+                avatar: "L",
+                dialogue: "Deal. Alright, let's look at those integrals one more time. Slowly.",
+                pronunciation: "ดีล. ออลไรท์, เล็ตส์ ลุค แอท โดส อินทิกรัลส์ วัน มอร์ ไทม์. สโลว์ลี่.",
+                translation: "ตกลง เอาล่ะ เรามาดูเรื่องอินทิกรัลนั่นกันอีกสักรอบ ช้าๆ"
+            }
+        ];
+
+        function renderDialogue() {
+            const container = document.getElementById('dialogueContainer');
+            container.innerHTML = '';
+
+            dialogueData.forEach((item) => {
+                if (item.scene) {
+                    const sceneEl = document.createElement('div');
+                    sceneEl.className = 'scene-header';
+                    sceneEl.textContent = item.scene;
+                    container.appendChild(sceneEl);
+
+                    const timestampEl = document.createElement('div');
+                    timestampEl.className = 'timestamp';
+                    timestampEl.textContent = item.timestamp;
+                    container.appendChild(timestampEl);
+                } else {
+                    const dialogueEl = document.createElement('div');
+                    dialogueEl.className = `dialogue-block ${item.character.toLowerCase()}`;
+
+                    let content = `
+                        <div class="character-section">
+                            <div class="avatar ${item.character.toLowerCase()}">${item.avatar}</div>
+                            <div class="dialogue-content">
+                                <div class="character-name ${item.character.toLowerCase()}">${item.character}</div>
+                    `;
+
+                    if (item.action) {
+                        content += `<div class="action">${item.action}</div>`;
+                    }
+
+                    content += `
+                                <div class="dialogue-text">${item.dialogue}</div>
+                    `;
+
+                    if (item.pronunciation) {
+                        content += `
+                            <div class="pronunciation">
+                                <div class="pronunciation-label">📢 Pronunciation:</div>
+                                ${item.pronunciation}
+                            </div>
+                        `;
+                    }
+
+                    if (item.translation) {
+                        content += `
+                            <div class="translation">
+                                <div class="translation-label">🇹🇭 Thai Translation:</div>
+                                ${item.translation}
+                            </div>
+                        `;
+                    }
+
+                    content += `
+                            </div>
+                        </div>
+                    `;
+
+                    dialogueEl.innerHTML = content;
+                    container.appendChild(dialogueEl);
+                }
+            });
+        }
+
+        // Initial render
+        renderDialogue();
+    </script>
+</body>
+</html>
